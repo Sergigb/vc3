@@ -25,13 +25,9 @@ Hc4 = H*c4;
 % be homogeneous to. Make them homogeneous.
 % -----------------------------------------------------------------------
 Hc1h = Hc1;
-Hc1h(3)= 1;
 Hc2h = Hc2;
-Hc2h(3) = 1;
 Hc3h = Hc3;
-Hc3h(3) = 1;
 Hc4h = Hc4;
-Hc4h(3) = 1;
         
 % Compute extremal transformed corner coordinates so we know the size and
 % the shape our new images will have
@@ -47,14 +43,12 @@ ymax = round(max([Hc1h(2) Hc2h(2) Hc3h(2) Hc4h(2)]));
 % the X and Y cooordinate pairs of the image.
 
 [X,Y] = meshgrid(xmin:xmax,ymin:ymax);
-
+X
+Y
 % 16.2 Check how much rows and columns we will have subtracting the min to
 % the max and adding 1
-Ncols = (xmax - xmin) + 1;
-Nrows = (ymax - ymin) + 1;
-
-size(X)
-size(Y)
+% Ncols = ...
+% Nrows = ...
 
 % Now we create a variable W with the same number of rows and columns and
 % add it to a vector that we will call XYW
@@ -62,24 +56,22 @@ W = ones(Nrows,Ncols);
 XYW = [X(:) Y(:) W(:)]';
 
 % 16.3 invert the homography
-Hi = inv(H);
+% Hi = ...
 
 % 16.4 Multiply the inverted homography by the points XYW
 HiXYWs = Hi * XYW;
 
 % We turn them to their original shape
-HX = reshape(HiXYWs(1,:), Nrows, Ncols);      %?? Hnrows, Hncols);???
-HY = reshape(HiXYWs(2,:), Nrows, Ncols);      %?? Hnrows, Hncols);???
-HW = reshape(HiXYWs(3,:), Nrows, Ncols);
-
-size(HX)
+HX = reshape(HiXYWs(1,:), Hnrows, Hncols);
+HY = reshape(HiXYWs(2,:), Hnrows, Hncols);
+HW = reshape(HiXYWs(3,:), Hnrows, Hncols);
 
 % 16.5 Make the coordinates homogeneous
 % HX = ...
 % HY = ...
 
 % This transforms the image
-I_trans = zeros(Nrows, Ncols, nchan);
+I_trans = zeros(Hnrows, Hncols, nchan);
 for c=1:nchan,
     I_trans(:,:,c) = interp2(double(I(:,:,c)), HX, HY, 'linear', 0);
 end

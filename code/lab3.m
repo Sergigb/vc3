@@ -91,7 +91,7 @@ end
 for i=1:numel(images) % Maybe you have to change this values
     
     % TODO. Fill the apply_H function for the left image
-    %[img_transformed] = apply_H(..., inv(H{i-1}))
+    [img_transformed] = apply_H(images{i,1}, inv(H{i}));%%CAMBIAR A H{i-1} Y LOS INTERVALOS !O O!OK !OK O!
     
     % TODO. Fill the apply_H function for the right image
     % [img_transformed] = apply_H(..., H{i})

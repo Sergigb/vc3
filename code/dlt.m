@@ -42,11 +42,11 @@ A = zeros(2*n,9);
 % Fill A with the proper values at each point
 for i=1:n
      A(2*i-1,1:3) = zeros(1,3)';
-     A(2*i-1,4:6) = -pt2h(3, i)*pt1h(:, i);
-     A(2*i-1,7:9) = pt2h(2, i)*pt1h(:, i);
-     A(2*i,1:3) = pt2h(3, i)*pt1h(:, i);
+     A(2*i-1,4:6) = -pt2n(3, i)*pt1n(:, i);
+     A(2*i-1,7:9) = pt2n(2, i)*pt1n(:, i);
+     A(2*i,1:3) = pt2n(3, i)*pt1n(:, i);
      A(2*i,4:6) = zeros(1,3)';
-     A(2*i,7:9) = -pt2h(1, i)*pt1h(:, i);
+     A(2*i,7:9) = -pt2n(1, i)*pt1n(:, i);
 end
 
 % -----------------------------------------------------------------------
