@@ -21,7 +21,8 @@ if ld == 1
       % the load flag is set to 1, you have to load the variable in your
       % workspace. http://es.mathworks.com/help/matlab/ref/load.html
       % ------------------------------------------------------------------
-    
+      points = load('points_etse.mat', 'points');  
+      points = points.points;
 else
       points = cell(numel(images),1);
       

@@ -14,17 +14,19 @@ n = numel(points);
 % convert the points to homogeneous coordinates. 
 % http://robotics.stanford.edu/~birch/projective/node4.html
 % -----------------------------------------------------------------------
-% pt1 = ...
-% pt2 = ...
+pt1 = points(1:2, :);
+pt2 = points(3:4, :);
 
 % Homogeneous coordinates
-% pt1h = ...
-% pt2h = ...
+pt1h = pt1;
+pt1h(3,:)=1;
+pt2h = pt2;
+pt2h(3,:)=1;
    
 % Attempt to normalise each set of points so that the origin 
 % is at centroid and mean distance from origin is sqrt(2).
-% [pt1n, T1] = normalise2dpts(pt1h);
-% [pt2n, T2] = normalise2dpts(pt2h);
+ [pt1n, T1] = normalise2dpts(pt1h);
+ [pt2n, T2] = normalise2dpts(pt2h);
 
 % Solving systems of equations. -----------------------------------------
 % When we want to solve a system so that Ax = b, what we want to find is x,

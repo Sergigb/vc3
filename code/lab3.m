@@ -44,6 +44,9 @@ np = 4;     % Number of points to pick.
 % along all your sequence.
 % -----------------------------------------------------------------------
 
+%h,w intercambiados
+
+
 [points] = interest_points(images, ld, np);
 
 % -----------------------------------------------------------------------
@@ -53,20 +56,21 @@ np = 4;     % Number of points to pick.
 % of the images in the second dimension;
 % -----------------------------------------------------------------------
 show_points = 1;
+[h,w,l] = size(images{1});
 if show_points == 1
     for i=1:size(images,1)-1
     imshow([images{i,1}, images{i+1,1}]); hold on,
     
     % Plot of the points over the image 1
     pts1 = points{i}(1:2,:);
-%     plot(...,...,'y+')
+    plot(points{i}(2, :) , points{i}(1, :) ,'y+');
     
     % Plot of the points over the image 2 with displacement
     pts2 = points{i}(3:4,:);
-%     plot(...,...,'c+)
+    plot(points{i}(4, :)+w, points{i}(3, :),'c+');
     
     hold off,
-    pause(1)
+    pause(0.005)
     end
 end
 
@@ -80,7 +84,7 @@ end
 H = cell(numel(images),1);
 for i=1:numel(images) % Spetial case when i = numel(images)
     % TODO. Fill the dlt function
-    % H{i} = dlt(points...)
+    H{i} = dlt(points{i});
     
 end
 
