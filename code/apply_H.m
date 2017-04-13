@@ -14,10 +14,10 @@ c4 = [ncols nrows 1]';
 % 14. Multiply the homography for each of the corners so we can know when
 % they will lie and the new size of the image.
 % -----------------------------------------------------------------------
-% Hc1 = ...
-% Hc2 = ...
-% Hc3 = ...
-% Hc4 = ...
+Hc1 = c1*H
+Hc2 = c2*H
+Hc3 = c3*H
+Hc4 = c4*H
 
 % -----------------------------------------------------------------------
 % 15. You are working with homogeneous coordinates so your corners should

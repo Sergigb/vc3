@@ -82,16 +82,16 @@ end
 % reference). Fill the DLT Function and the apply_H function 
 % -----------------------------------------------------------------------
 H = cell(numel(images),1);
-for i=1:numel(images) % Spetial case when i = numel(images)
+for i=1:numel(images) % Special case when i = numel(images)
     % TODO. Fill the dlt function
     H{i} = dlt(points{i});
     
 end
 
-for i=1:nume(images) % Maybe you have to change this values
+for i=1:numel(images) % Maybe you have to change this values
     
     % TODO. Fill the apply_H function for the left image
-    % [img_transformed] = apply_H(..., inv(H{i-1}))
+    %[img_transformed] = apply_H(..., inv(H{i-1}))
     
     % TODO. Fill the apply_H function for the right image
     % [img_transformed] = apply_H(..., H{i})

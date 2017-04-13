@@ -39,34 +39,37 @@ pt2h(3,:)=1;
 % A initialization
 A = zeros(2*n,9);
 
+% disp(pt1n);
+% disp(pt2h);
+
+disp('-----------------------------------------------')
+disp(n);
 % Fill A with the proper values at each point
 for i=1:n
-     A(2*i-1,1:3) = zeros(1,3)';
-     A(2*i-1,4:6) = -pt2h(3, i)*pt1h(:, i);
-     A(2*i-1,7:9) = pt2h(2, i)*pt1h(:, i);
-     A(2*i,1:3) = pt2h(3, i)*pt1h(:, i);
-     A(2*i,4:6) = zeros(1,3)';
-     A(2*i,7:9) = -pt2h(1, i)*pt1h(:, i);
+    disp(pt1h(3, i));
+%     A(2*i-1,1:3) = zeros(1,3)';
+%     A(2*i-1,4:6) = -pt2n(i)
+%     A(2*i-1,7:9) = 
+%     A(2*i,1:3) = ...
+%     A(2*i,4:6) = ...
+%     A(2*i,7:9) = ...
 end
 
 % -----------------------------------------------------------------------
 % 11. Solve A applying Singular Value Decomposition to A.
 % http://es.mathworks.com/help/matlab/ref/svd.html?s_tid=srchtitle
 % -----------------------------------------------------------------------
-
-[U,D,V] = svd(A);
+% [U,D,V] = ...
 
 % -----------------------------------------------------------------------
 % 12. Take the last column of the transposed of V, that's the singular
 % vector with the lowest singular value.
 % -----------------------------------------------------------------------
-
-h = V(:,9);
+% h = ...
 
 % -----------------------------------------------------------------------
 % 13. Reshape h to be a 3x3 matrix.
 % -----------------------------------------------------------------------
-
-H = reshape(h, 3, 3)';
+% H = ...
 
 end
