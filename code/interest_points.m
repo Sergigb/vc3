@@ -48,7 +48,7 @@ else
       % datasets. http://es.mathworks.com/help/matlab/ref/save.html
       % ------------------------------------------------------------------
       
-      save('points_etse.mat', 'points');      
+      save('../points/points_etse.mat', 'points');      
 end
     
 

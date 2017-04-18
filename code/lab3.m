@@ -55,7 +55,7 @@ np = 4;     % Number of points to pick.
 % that the points from image 2 have a displacement in x equal to the size
 % of the images in the second dimension;
 % -----------------------------------------------------------------------
-show_points = 1;
+show_points = 0;
 [h,w,l] = size(images{1});
 if show_points == 1
     for i=1:size(images,1)-1
@@ -88,13 +88,16 @@ for i=1:numel(images) % Special case when i = numel(images)
     
 end
 
-for i=1:numel(images) % Maybe you have to change this values
-    
-    % TODO. Fill the apply_H function for the left image
-    [img_transformed] = apply_H(images{i,1}, inv(H{i}));%%CAMBIAR A H{i-1} Y LOS INTERVALOS !O O!OK !OK O!
-    
+% for i=1:numel(images) % Maybe you have to change this values
+for i = 2:2
+    % TODO. Fill the apply_H function for the left image hacer esto de
+    % nuevo
+    [img_transformed] = apply_H(images{1}, (H{17}));
+    figure, imshow(uint8(img_transformed));
     % TODO. Fill the apply_H function for the right image
-    % [img_transformed] = apply_H(..., H{i})
+    [img_transformed] = apply_H(images{2}, H{1});
+    figure, imshow(uint8(img_transformed));
+        
 end
 
 % TODO. Solve here the extremum cases
