@@ -19,10 +19,8 @@ pt1 = points(1:2, :);
 pt2 = points(3:4, :);
 
 % Homogeneous coordinates
-pt1h = pt1;
-pt1h(3,:)=1;
-pt2h = pt2;
-pt2h(3,:)=1;
+pt1h = pt1./pt1(3,:);
+pt2h = pt2./pt2(3,:);
    
 % Attempt to normalise each set of points so that the origin 
 % is at centroid and mean distance from origin is sqrt(2).
@@ -46,7 +44,7 @@ for i=1:n
      A(2*i-1,7:9) = pt2n(2, i)*pt1n(:, i)';
      A(2*i,1:3) = pt2n(3, i)*pt1n(:, i)';
      A(2*i,4:6) = zeros(1,3)';
-     A(2*i,7:9) = -pt2n(1, i)*pt1n(:, i)';
+     A(2*i,7:9) = -pt2n(1, i)*pt1n(:, i');
 end
 
 % -----------------------------------------------------------------------

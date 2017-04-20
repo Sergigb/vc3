@@ -20,28 +20,14 @@ Hc2 = H*c2;
 Hc3 = H*c3;
 Hc4 = H*c4;
 
-% fprintf('%0.5f\n',Hc1);
-% fprintf('%0.5f\n',Hc2);
-% fprintf('%0.5f\n',Hc3);
-% fprintf('%0.5f\n',Hc4);
-
 % -----------------------------------------------------------------------
 % 15. You are working with homogeneous coordinates so your corners should
 % be homogeneous to. Make them homogeneous.
 % -----------------------------------------------------------------------
-Hc1h = Hc1;
-Hc1h(3)= 1;
-Hc2h = Hc2;
-Hc2h(3) = 1;
-Hc3h = Hc3;
-Hc3h(3) = 1;
-Hc4h = Hc4;
-Hc4h(3) = 1;
-
-% fprintf('%0.5f\n',Hc1h);
-% fprintf('%0.5f\n',Hc2h);
-% fprintf('%0.5f\n',Hc3h);
-% fprintf('%0.5f\n',Hc4h);
+Hc1h = Hc1./Hc1(3);
+Hc2h = Hc2./Hc2(3);
+Hc3h = Hc3./Hc3(3);
+Hc4h = Hc4./Hc4(3);
 
 
 % Compute extremal transformed corner coordinates so we know the size and
@@ -56,6 +42,15 @@ ymax = round(max([Hc1h(2) Hc2h(2) Hc3h(2) Hc4h(2)]));
 % -----------------------------------------------------------------------
 % 16.1 Do a meshgrid from xmin to xmax and from ymin to ymax to obain all
 % the X and Y cooordinate pairs of the image.
+
+if (xmax - xmin) + 1 > 6000
+    I_trans = [0,0];
+    return
+end
+if (ymax - ymin) + 1 > 6000
+    I_trans = [0,0];
+    return
+end
 
 [X,Y] = meshgrid(xmin:xmax,ymin:ymax);
 
@@ -82,8 +77,8 @@ HiXYWs = Hi * XYW;
 clear XYW
 
 % We turn them to their original shape
-HX = reshape(HiXYWs(1,:), Nrows, Ncols);      %?? Hnrows, Hncols);???
-HY = reshape(HiXYWs(2,:), Nrows, Ncols);      %?? Hnrows, Hncols);???
+HX = reshape(HiXYWs(1,:), Nrows, Ncols);
+HY = reshape(HiXYWs(2,:), Nrows, Ncols);
 HW = reshape(HiXYWs(3,:), Nrows, Ncols);
 
 % 16.5 Make the coordinates homogeneous
@@ -93,7 +88,7 @@ HY = HY./HW;
 clear HW
 
 % This transforms the image
-I_trans = zeros(Nrows, Ncols, nchan);   %Hnrows???
+I_trans = zeros(Nrows, Ncols, nchan);
 for c=1:nchan,
     I_trans(:,:,c) = interp2(double(I(:,:,c)), HX, HY, 'linear', 0);
 end
